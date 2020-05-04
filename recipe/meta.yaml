@@ -1,4 +1,4 @@
-{% set version = '1.11' %}
+{% set version = "1.11" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -14,8 +14,8 @@ source:
   sha256: 1ea48c281825349d8642a661bb447e23bfd651db3599bf72593bfebe17b101d2
 
 build:
-  merge_build_host: True  # [win]
-  number: 1002
+  merge_build_host: true  # [win]
+  number: 1003
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -25,17 +25,17 @@ requirements:
   build:
     - {{ compiler('c') }}        # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{posix}}filesystem        # [win]
-    - {{posix}}make
-    - {{posix}}sed               # [win]
-    - {{posix}}coreutils         # [win]
-    - {{posix}}zip               # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
   host:
     - r-base
     - r-checkmate >=1.8.0
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
+    - {{ native }}gcc-libs         # [win]
     - r-checkmate >=1.8.0
 
 test:
@@ -45,11 +45,13 @@ test:
 
 about:
   home: https://github.com/berndbischl/BBmisc
-  license: BSD_2_clause
-  summary: Miscellaneous helper functions for and from B. Bischl and some other guys, mainly
-    for package development.
+  license: BSD-2-Clause
+  summary: Miscellaneous helper functions for and from B. Bischl and some other guys, mainly for package development.
   license_family: BSD
 
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/BSD_2_clause
+    - LICENSE
 extra:
   recipe-maintainers:
     - conda-forge/r
