@@ -7,36 +7,37 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: BBmisc_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/BBmisc_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/BBmisc/BBmisc_{{ version }}.tar.gz
   sha256: 900a633f69b7d9b13d58709eeae2fca2c1bc510765d778623a2af32cc870053e
 
 build:
-  merge_build_host: true  # [win]
+  merge_build_host: True  # [win]
   number: 0
-  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
     - r-base
     - r-checkmate >=1.8.0
+    - r-data.table
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
     - r-checkmate >=1.8.0
+    - r-data.table
 
 test:
   commands:
@@ -48,10 +49,10 @@ about:
   license: BSD-2-Clause
   summary: Miscellaneous helper functions for and from B. Bischl and some other guys, mainly for package development.
   license_family: BSD
-
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/BSD_2_clause
     - LICENSE
+
 extra:
   recipe-maintainers:
     - conda-forge/r
