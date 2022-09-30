@@ -1,4 +1,4 @@
-{% set version = "1.12" %}
+{% set version = "1.13" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,10 +10,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/BBmisc_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/BBmisc/BBmisc_{{ version }}.tar.gz
-  sha256: 900a633f69b7d9b13d58709eeae2fca2c1bc510765d778623a2af32cc870053e
+  sha256: 1145dcf9fed15e7beeaa4a5c7075d8a8badd17c8246838cd63e40cd9551e4405
 
 build:
-  merge_build_host: True  # [win]
+  merge_build_host: true  # [win]
   number: 0
   rpaths:
     - lib/R/lib/
