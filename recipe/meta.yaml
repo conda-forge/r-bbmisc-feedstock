@@ -1,4 +1,4 @@
-{% set version = "1.13.1" %}
+{% set version = "1.13.2" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/BBmisc_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/BBmisc/BBmisc_{{ version }}.tar.gz
-  sha256: 8f599b25f925b47e5657b8e5b213e297934ae1195a50b9230765020a2dd08162
+  sha256: 412ea9cb2b1bfa124c35e3e291019f6e573dbdfb76deff8e8c86ff8fdca6f941
 
 build:
   number: 0
